@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/', function () {
-    return view( 'index' );
-} )->name( 'index' );
+Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/', [
+    IndexController::class,
+    'index'
+] )->name( 'index' );
