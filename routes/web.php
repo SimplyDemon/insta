@@ -27,3 +27,8 @@ Route::middleware( [ 'auth:sanctum', 'verified' ] )->post( '/contact_add', [
     UserController::class,
     'contactAdd'
 ] )->name( 'user.contact.add' );
+
+Route::middleware( [ 'auth:sanctum', 'verified' ] )->post( '/contact_remove', [
+    UserController::class,
+    'contactRemove'
+] )->name( 'user.contact.remove' );

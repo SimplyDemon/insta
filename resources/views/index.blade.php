@@ -15,6 +15,10 @@
                         @endif
 
                         {{ __('You are logged in!') }}
+
+                        @if (Session::has('message'))
+                            <li class="list-group-item">{!! session('message') !!}</li>
+                        @endif
                     </div>
                     <div class="card-body">
                         <h2>Your contacts</h2>
@@ -24,6 +28,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,6 +37,13 @@
                                     <td>{{$single->name}}</td>
                                     <td>{{$single->email}}</td>
                                     <td>{{$single->phone}}</td>
+                                    <td>
+                                        <form method="post" action="{{ route( 'user.contact.remove' ) }}">
+                                            @csrf
+                                            <input type="hidden" name="contact_id" value="{{$single->id}}">
+                                            <button type="submit">Remove</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -39,14 +51,6 @@
                     </div>
                     <div class="card-body">
                         <h2>All contacts</h2>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-
-
-                        @if (Session::has('message'))
-                            <li>{!! session('message') !!}</li>
-                        @endif
                         <table class="table">
                             <thead>
                             <tr>
