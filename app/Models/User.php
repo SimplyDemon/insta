@@ -39,4 +39,8 @@ class User extends Authenticatable {
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function contacts() {
+        return $this->belongsToMany( 'App\Models\Contact' )->withTimeStamps();
+    }
 }

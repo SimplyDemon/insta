@@ -11,4 +11,8 @@ class Contact extends Model {
     use SoftDeletes;
 
     protected $guarded = [ 'id', 'created_at', 'updated_at', 'deleted_at' ];
+
+    public function users() {
+        return $this->belongsToMany( 'App\Models\User' )->withTimeStamps();
+    }
 }

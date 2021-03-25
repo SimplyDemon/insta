@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,8 @@ Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/', [
     IndexController::class,
     'index'
 ] )->name( 'index' );
+
+Route::middleware( [ 'auth:sanctum', 'verified' ] )->post( '/contact_add', [
+    UserController::class,
+    'contactAdd'
+] )->name( 'user.contact.add' );
