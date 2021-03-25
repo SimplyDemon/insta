@@ -17,6 +17,27 @@
                         {{ __('You are logged in!') }}
                     </div>
                     <div class="card-body">
+                        <h2>Your contacts</h2>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($userContacts as $single)
+                                <tr>
+                                    <td>{{$single->name}}</td>
+                                    <td>{{$single->email}}</td>
+                                    <td>{{$single->phone}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-body">
                         <h2>All contacts</h2>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -36,7 +57,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($contacts as $single)
+                            @foreach($allContacts as $single)
                                 <tr>
                                     <td>{{$single->name}}</td>
                                     <td>{{$single->email}}</td>

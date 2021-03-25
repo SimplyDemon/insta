@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller {
 
@@ -13,10 +15,12 @@ class IndexController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        $contacts = Contact::orderBy( 'id', 'asc' )->get();
+        $allContacts  = Contact::orderBy( 'id', 'asc' )->get();
+        $userContacts = User::find( Auth::user()->id )->contacts->sortByDesc( 'pivot.created_at' );
 
         return view( 'index', [
-            'contacts' => $contacts,
+            'allContacts'  => $allContacts,
+            'userContacts' => $userContacts,
         ] );
     }
 }
